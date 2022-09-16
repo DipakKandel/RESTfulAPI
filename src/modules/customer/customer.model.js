@@ -26,4 +26,4 @@ let customerSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('user', customerSchema)
+module.exports = mongoose.model('customer', customerSchema)

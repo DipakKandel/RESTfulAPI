@@ -22,13 +22,13 @@ customerController.postCustomer = async (req, res, next) => {
 };
 
 customerController.getCustomer = function (req, res) {
-  console.log(req.query.email);
-  if (!req.query.email) {
-    return res.status(400).send("missing url parameter: email");
+  console.log(req.body.email);
+  if (!req.body.email) {
+    return res.status(400).send("missing body parameter: email");
   }
   customerModel
     .findOne({
-      email: req.query.email,
+      email: req.body.email,
     })
     .then((doc) => {
       res.json(doc);
@@ -91,9 +91,9 @@ customerController.loginCustomer = async function (req, res) {
     if (user) {
       const enteredPass = req.body.password;
 
-      // const apassword = user.password;
+      const apassword = user.password;
 
-      bcrypt.compare(enteredPass, user.passsword).then((result, err) => {
+       bcrypt.compare(enteredPass,apassword).then((result, err) => {
         if (result) {
           return res.send("Logged In Successfully");
         } else {
