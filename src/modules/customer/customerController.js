@@ -77,47 +77,35 @@ customerController.deleteCustomer = function (req, res) {
 };
 
 customerController.loginCustomer = async function (req, res) {
-  try{
+  try {
     if (!req.body.email) {
       return res.status(400).send("missing url parameter: email");
     }
     if (!req.body.password) {
       return res.status(400).send("missing url parameter: password");
     }
-  
-     
-    const user = await customerModel.findOne({ email:req.body.email });
-    console.log(user)
-    // if (!user) {
-    //   console.log("user not found")
-    //   return res.send("User not found");
-    // }
-  if(user){
-       const enteredPass = req.body.password;
-      //  return res.send(enteredPass)
-      const apassword = user.password;
-      // console.log(apassword)
-      // if(enteredPass && apassword){
-        bcrypt.compare(enteredPass,apassword).then((result,err)=>{
-          if (result) {
-            return res.send("Logged In Successfully");
-            }
-            else{
-                    return res.send("incorrect Password");
-            }
-        });
-        
-      }
-    
-    else{
+
+    const user = await customerModel.findOne({ email: req.body.email });
+    console.log(user);
+
+    if (user) {
+      const enteredPass = req.body.password;
+
+      // const apassword = user.password;
+
+      bcrypt.compare(enteredPass, user.passsword).then((result, err) => {
+        if (result) {
+          return res.send("Logged In Successfully");
+        } else {
+          return res.send("incorrect Password");
+        }
+      });
+    } else {
       return res.send("user not found");
     }
-  }
-  catch(err){
+  } catch (err) {
     console.log(err);
   }
-  }
+};
 
- 
-  
 module.exports = customerController;

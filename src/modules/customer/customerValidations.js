@@ -6,7 +6,7 @@ const validations = {};
 validations.sanitizeRegister = [
     
     check('name').trim().not().isEmpty().withMessage('name cant be empty').not().isString().withMessage('Name must be string'),
-    // check('name').isString().not().withMessage('name must be string'),
+    // check('name').isString().not().withMessage('name must be string'), /**Mildai milena */
     check('email').normalizeEmail().isEmail().withMessage('Invalid Email'),
     check('phone').isLength({ min: 10, max:10 }).withMessage('Number must be 10 characters long'),
     check('password').trim().not().isEmpty().withMessage(`Password can't be empty`)
