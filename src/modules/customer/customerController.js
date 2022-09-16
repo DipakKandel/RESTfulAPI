@@ -9,6 +9,10 @@ customerController.postCustomer = async (req, res, next) => {
       return res.status(400).send("request body is missing");
     }
     const { name, phone, email, password } = req.body;
+    const user = await customerModel.findOne({ email: req.body.email });
+    if (user){
+     return res.send("The email address is already used")
+    }
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, async (err, hash) => {
         let model = new customerModel({ name, phone, email, password: hash });

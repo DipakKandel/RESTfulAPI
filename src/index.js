@@ -3,6 +3,7 @@ let app = express();
 
 let personRoute = require('./routes/person')
 let customerRoute = require('./routes/customer')
+let postRoute = require('./routes/posts')
 let path = require('path');
 let bodyParser = require('body-parser')
 
@@ -14,6 +15,7 @@ app.use((req,res,next)=>{
     
 })
 
+app.use(postRoute)
 app.use(personRoute)
 app.use(customerRoute)
 app.use(express.static("public"));

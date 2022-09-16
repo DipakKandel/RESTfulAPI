@@ -20,4 +20,4 @@ router.get('/person/:name',personController.getPersonName)
 //localhost:3000/person?name=dipak&age=22
 router.get('/person',personController.getPerson)
 
-module.exports = router;
+module.exports = router

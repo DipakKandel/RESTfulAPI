@@ -12,6 +12,8 @@ validations.sanitizeRegister = [
     check('password').trim().not().isEmpty().withMessage(`Password can't be empty`)
 ];
 
+
+
 validations.output = (req,res, next)=>{
     const result = validationResult(req).array();
     if(!result.length) return next();
