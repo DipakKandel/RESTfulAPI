@@ -13,6 +13,11 @@ let postSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    author_email:{
+        type:String,
+        required:true,
+        unique:true
+    },
     title:{
         type: String,
         required:true,
