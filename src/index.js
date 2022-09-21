@@ -6,6 +6,7 @@ let customerRoute = require("./routes/customer");
 let postRoute = require("./routes/posts");
 let path = require("path");
 let bodyParser = require("body-parser");
+const { jwtAuthenticate } = require("./modules/customer/customerValidations");
 
 app.use(bodyParser.json());
 
@@ -27,6 +28,9 @@ app.use((req, res, next) => {
 // HANDLER FOR all other ERROR
 app.use((err, req, res, next) => {
   // console.error(err.stack)
+  // if(typeof err == jwtAuthenticate){
+  //  return res.send('please login again')
+  // }
   res.send(err.stack);
   // res.sendFile(path.join(__dirname, '../public/500.html'))
 });

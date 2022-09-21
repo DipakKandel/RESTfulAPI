@@ -36,7 +36,7 @@ validations.jwtCreate = (req, res, next) => {
     console.log("here");
     const user = { email: req.body.email };
 
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15s'});
 
     console.log({ accessToken });
     req.token = accessToken;
@@ -51,6 +51,7 @@ validations.jwtAuthenticate =async (req, res, next) => {
   try {
     const token = req.headers.authorization || req.token;
     console.log(token)
+    
     // const token = authHeader ;
     if (token == null ) return res.status(404).send("Couldn't authenticate");
 
