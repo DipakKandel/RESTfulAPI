@@ -19,7 +19,7 @@ postController.newPost = (req,res,next)=>{
     
    }
    catch(err){
-    res.json(err)
+    next(err)
    }
 }
 
@@ -42,7 +42,7 @@ postController.articles = async (req,res,next)=>{
             next(err)
             
           })
-          // .then((doc) => {
+           // .then((doc) => {
           //   if(doc == null){
           //     return res.send("there are no articles written by logged in user")
           //   }

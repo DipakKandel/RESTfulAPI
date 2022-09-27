@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
   // if(typeof err == jwtAuthenticate){
   //  return res.send('please login again')
   // }
-  res.send(err.stack);
+  res.send(err.message);
   // res.sendFile(path.join(__dirname, '../public/500.html'))
 });
 
